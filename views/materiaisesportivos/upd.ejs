@@ -1,0 +1,17 @@
+<%- include('../cabecalho', { titulo: 'Editar Materiais esportivos' }) %>
+<section class="container">
+    <h2>Editar registro</h2>
+    <form action="/materiais/upd/<%= item._id %>" method="POST">
+        <label for="nome">Nome:</label>
+        <input id="nome" type="text" name="nome" value="<%= item.nome %>" required>
+        <label for="preco">Preço (R$):</label>
+        <input id="preco" type="number" name="preco" value="<%= item.preco %>" step="0.01" required>
+        <label for="categoria">Categoria:</label>
+        <input id="categoria" type="text" name="categoria" value="<%= item.categoria %>" required>
+        <div class="form-actions">
+            <button type="submit">Salvar alterações</button>
+            <a class="button secondary" href="/materiais">Cancelar</a>
+        </div>
+    </form>
+</section>
+<%- include('../rodape') %>

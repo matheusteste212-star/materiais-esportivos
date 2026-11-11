@@ -1,0 +1,17 @@
+<%- include('../cabecalho', { titulo: 'Cadastrar Materiais esportivos' }) %>
+<section class="container">
+    <h2>Cadastrar Materiais esportivo</h2>
+    <form action="/materiais" method="POST">
+        <label for="nome">Nome:</label>
+        <input id="nome" type="text" name="nome" required>
+        <label for="preco">Preço (R$):</label>
+        <input id="preco" type="number" name="preco" step="0.01" required>
+        <label for="categoria">Categoria:</label>
+        <input id="categoria" type="text" name="categoria" required>
+        <div class="form-actions">
+            <button type="submit">Cadastrar</button>
+            <a class="button secondary" href="/materiais">Cancelar</a>
+        </div>
+    </form>
+</section>
+<%- include('../rodape') %>

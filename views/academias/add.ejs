@@ -1,0 +1,17 @@
+<%- include('../cabecalho', { titulo: 'Cadastrar Academias' }) %>
+<section class="container">
+    <h2>Cadastrar Academia</h2>
+    <form action="/academias" method="POST">
+        <label for="nome">Nome:</label>
+        <input id="nome" type="text" name="nome" required>
+        <label for="cidade">Cidade:</label>
+        <input id="cidade" type="text" name="cidade" required>
+        <label for="tipoesporte">Tipo de esporte:</label>
+        <input id="tipoesporte" type="text" name="tipoesporte" required>
+        <div class="form-actions">
+            <button type="submit">Cadastrar</button>
+            <a class="button secondary" href="/academias">Cancelar</a>
+        </div>
+    </form>
+</section>
+<%- include('../rodape') %>

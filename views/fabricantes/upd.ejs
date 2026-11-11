@@ -1,0 +1,15 @@
+<%- include('../cabecalho', { titulo: 'Editar Fabricantes' }) %>
+<section class="container">
+    <h2>Editar registro</h2>
+    <form action="/fabricantes/upd/<%= item._id %>" method="POST">
+        <label for="nome">Nome:</label>
+        <input id="nome" type="text" name="nome" value="<%= item.nome %>" required>
+        <label for="anoFundacao">Ano de fundação:</label>
+        <input id="anoFundacao" type="number" name="anoFundacao" value="<%= item.anoFundacao %>" required>
+        <div class="form-actions">
+            <button type="submit">Salvar alterações</button>
+            <a class="button secondary" href="/fabricantes">Cancelar</a>
+        </div>
+    </form>
+</section>
+<%- include('../rodape') %>

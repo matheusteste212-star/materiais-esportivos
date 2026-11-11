@@ -1,0 +1,37 @@
+<%- include('../cabecalho', { titulo: 'Lista de Fabricantes' }) %>
+<section class="container">
+    <div class="section-heading">
+        <h2>Fabricantes cadastrados</h2>
+        <a class="button" href="/fabricantes/add">Adicionar</a>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Ano de fundação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (fabricantes && fabricantes.length > 0) { %>
+                    <% fabricantes.forEach(item => { %>
+                        <tr>
+                            <td><%= item.nome %></td>
+                            <td><%= item.anoFundacao %></td>
+                            <td class="actions">
+                                <a href="/fabricantes/upd/<%= item._id %>">Editar</a>
+                                <form action="/fabricantes/del/<%= item._id %>" method="POST" onsubmit="return confirm('Deseja realmente excluir este registro?')">
+                                    <button class="danger" type="submit">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr><td colspan="3">Nenhum registro cadastrado.</td></tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</section>
+<%- include('../rodape') %>

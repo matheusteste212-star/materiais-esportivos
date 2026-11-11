@@ -1,0 +1,15 @@
+<%- include('../cabecalho', { titulo: 'Cadastrar Fabricantes' }) %>
+<section class="container">
+    <h2>Cadastrar Fabricante</h2>
+    <form action="/fabricantes" method="POST">
+        <label for="nome">Nome:</label>
+        <input id="nome" type="text" name="nome" required>
+        <label for="anoFundacao">Ano de fundação:</label>
+        <input id="anoFundacao" type="number" name="anoFundacao" required>
+        <div class="form-actions">
+            <button type="submit">Cadastrar</button>
+            <a class="button secondary" href="/fabricantes">Cancelar</a>
+        </div>
+    </form>
+</section>
+<%- include('../rodape') %>
