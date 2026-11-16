@@ -90,4 +90,39 @@ app.post('/academias/del/:id', async (req, res) => {
     res.redirect('/academias');
 });
 
+// Rota para pesquisar fabricante por nome
+app.post('/fabricantes/lst', async (req, res) => {
+    const { pesquisar } = req.body;
+
+    const fabricantes = await Fabricante.find({
+        nome: new RegExp(pesquisar, 'i')
+    });
+
+    res.render("fabricantes/lst", { fabricantes });
+});
+
+// Rota para pesquisar material por nome
+app.post('/materiais/lst', async (req, res) => {
+    const { pesquisar } = req.body;
+
+    const materiais = await MaterialEsportivo.find({
+        nome: new RegExp(pesquisar, 'i')
+    });
+
+    res.render("materiaisesportivos/lst", { materiais });
+});
+
+// Rota para pesquisar academia por nome
+app.post('/academias/lst', async (req, res) => {
+    const { pesquisar } = req.body;
+
+    const academias = await Academia.find({
+        nome: new RegExp(pesquisar, 'i')
+    });
+
+    res.render("academias/lst", { academias });
+});
+
+
+
 app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));

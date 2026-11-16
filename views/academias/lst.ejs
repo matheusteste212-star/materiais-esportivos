@@ -1,39 +1,53 @@
 <%- include('../cabecalho', { titulo: 'Lista de Academias' }) %>
-<section class="container">
-    <div class="section-heading">
-        <h2>Academias cadastradas</h2>
-        <a class="button" href="/academias/add">Adicionar</a>
-    </div>
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Cidade</th>
-                    <th>Tipo de esporte</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% if (academias && academias.length > 0) { %>
-                    <% academias.forEach(item => { %>
-                        <tr>
-                            <td><%= item.nome %></td>
-                            <td><%= item.cidade %></td>
-                            <td><%= item.tipoesporte %></td>
-                            <td class="actions">
-                                <a href="/academias/upd/<%= item._id %>">Editar</a>
-                                <form action="/academias/del/<%= item._id %>" method="POST" onsubmit="return confirm('Deseja realmente excluir este registro?')">
-                                    <button class="danger" type="submit">Excluir</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <% }) %>
-                <% } else { %>
-                    <tr><td colspan="4">Nenhum registro cadastrado.</td></tr>
-                <% } %>
-            </tbody>
-        </table>
-    </div>
-</section>
-<%- include('../rodape') %>
+    <section class="container">
+        <div class="section-heading">
+            <h2>Academias cadastradas</h2>
+            <a class="button" href="/academias/add">Adicionar</a>
+            <form action="/academias/lst" method="POST">
+                <input type="text" name="pesquisar" placeholder="Pesquisar academia">
+
+                <button type="submit">Pesquisar</button>
+            </form>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cidade</th>
+                        <th>Tipo de esporte</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (academias && academias.length> 0) { %>
+                        <% academias.forEach(item=> { %>
+                            <tr>
+                                <td>
+                                    <%= item.nome %>
+                                </td>
+                                <td>
+                                    <%= item.cidade %>
+                                </td>
+                                <td>
+                                    <%= item.tipoesporte %>
+                                </td>
+                                <td class="actions">
+                                    <a href="/academias/upd/<%= item._id %>">Editar</a>
+                                    <form action="/academias/del/<%= item._id %>" method="POST"
+                                        onsubmit="return confirm('Deseja realmente excluir este registro?')">
+                                        <button class="danger" type="submit">Excluir</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="4">Nenhum registro cadastrado.</td>
+                                    </tr>
+                                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <%- include('../rodape') %>
