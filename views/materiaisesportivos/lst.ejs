@@ -16,7 +16,9 @@
                         <th>Nome</th>
                         <th>Preço (R$)</th>
                         <th>Categoria</th>
+                        <th>Foto</th>
                         <th>Ações</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +33,8 @@
                                 <td>
                                     <%= item.categoria %>
                                 </td>
+                                <td><img src="<%=item.foto%>" width="150" height="150"></td>
+
                                 <td class="actions">
                                     <a href="/materiais/upd/<%= item._id %>">Editar</a>
                                     <form action="/materiais/del/<%= item._id %>" method="POST"

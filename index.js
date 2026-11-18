@@ -6,6 +6,11 @@ import Academia from './models/Academia.js';
 
 const app = express();
 const PORT = 3000;
+//upload de arquivos
+import multer from 'multer';
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -30,7 +35,7 @@ app.get('/fabricantes/upd/:id', async (req, res) => {
 });
 app.post('/fabricantes/upd/:id', async (req, res) => {
     const { nome, anoFundacao } = req.body;
-    await Fabricante.findByIdAndUpdate(req.params.id, { nome, anoFundacao: Number(anoFundacao) });
+    await Fabricagente.findByIdAndUpdate(req.params.id, { nome, anoFundacao: Number(anoFundacao) });
     res.redirect('/fabricantes');
 });
 app.post('/fabricantes/del/:id', async (req, res) => {
@@ -44,9 +49,13 @@ app.get('/materiais', async (req, res) => {
     res.render('materiaisesportivos/lst', { materiais });
 });
 app.get('/materiais/add', (req, res) => res.render('materiaisesportivos/add'));
-app.post('/materiais', async (req, res) => {
+app.post('/materiais', upload.single('foto'), async (req, res) => {
     const { nome, preco, categoria } = req.body;
-    await MaterialEsportivo.create({ nome, preco: Number(preco), categoria });
+    let foto = null;
+    if (req.file) {
+        foto = req.file.buffer; // Armazena o buffer da imagem
+    }
+    await MaterialEsportivo.create({ nome, preco: Number(preco), categoria, foto });
     res.redirect('/materiais');
 });
 app.get('/materiais/upd/:id', async (req, res) => {

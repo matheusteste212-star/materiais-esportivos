@@ -1,7 +1,7 @@
 <%- include('../cabecalho', { titulo: 'Cadastrar Materiais esportivos' }) %>
 <section class="container">
     <h2>Cadastrar Materiais esportivo</h2>
-    <form action="/materiais" method="POST">
+    <form action="/materiais" method="POST" enctype="multipart/form-data">
         <label for="nome">Nome:</label>
         <input id="nome" type="text" name="nome" required>
         <label for="preco">Preço (R$):</label>
@@ -12,6 +12,9 @@
             <button type="submit">Cadastrar</button>
             <a class="button secondary" href="/materiais">Cancelar</a>
         </div>
+        <br><br>
+        <p>Foto</p>
+        <input type="file" name="foto" accept="image/png">
     </form>
 </section>
 <%- include('../rodape') %>
